@@ -1,4 +1,4 @@
-import Hero from '../components/Hero.jsx';
+import { Link } from 'react-router-dom';
 import SectionTitle from '../components/SectionTitle.jsx';
 import FeatureCard from '../components/FeatureCard.jsx';
 import CTA from '../components/CTA.jsx';
@@ -7,13 +7,37 @@ import { staffingReasons, staffingProcess, staffingSolutions } from '../data/sta
 export default function Staffing() {
   return (
     <>
-      <Hero
-        variant="inner"
-        eyebrow="Medical staffing"
-        title="Vetted medical professionals, deployed when you need them"
-        description="From locum cover to permanent placement, we put credentialed, work-ready clinicians on your site."
-        primaryCta={{ to: '/contact', label: 'Discuss your need' }}
-      />
+      {/* Split hero: text left, clinicians image right */}
+      <section className="bg-peach">
+        <div className="container-section py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div>
+            <p className="eyebrow mb-4">Medical staffing</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+              Vetted medical professionals, deployed when you need them
+            </h1>
+            <p className="text-lg text-dark/70 leading-relaxed mb-8 max-w-xl">
+              From locum cover to permanent placement, we put credentialed, work-ready clinicians on your site.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              Discuss your need
+            </Link>
+          </div>
+
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-card">
+            <img
+              src="/staffing-clinicians.jpg"
+              alt=""
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Why choose staffing */}
       <section className="section-padding bg-white">
@@ -35,6 +59,20 @@ export default function Staffing() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Full-width banner: team of doctors */}
+      <section aria-hidden="true" className="w-full">
+        <div className="aspect-[21/9] w-full overflow-hidden">
+          <img
+            src="/staffing-team.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
         </div>
       </section>
 
@@ -66,6 +104,20 @@ export default function Staffing() {
         </div>
       </section>
 
+      {/* Full-width banner: doctor with tablet */}
+      <section aria-hidden="true" className="w-full">
+        <div className="aspect-[21/9] w-full overflow-hidden">
+          <img
+            src="/staffing-credentialed.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
+      </section>
+
       {/* Flexible staffing solutions */}
       <section className="section-padding bg-white">
         <div className="container-section">
@@ -88,11 +140,34 @@ export default function Staffing() {
         </div>
       </section>
 
-      <CTA
-        eyebrow="Staffing enquiry"
-        title="Need cover this week?"
-        description="Send us the role brief and we will revert with vetted candidates within 48 hours."
-      />
+      {/* CTA with coordinator companion image */}
+      <section className="section-padding bg-peach">
+        <div className="container-section grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-2 aspect-[3/4] rounded-2xl overflow-hidden shadow-card">
+            <img
+              src="/staffing-coordinator.jpg"
+              alt=""
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+          <div className="lg:col-span-3">
+            <p className="eyebrow mb-4">Staffing enquiry</p>
+            <h2 className="text-3xl md:text-4xl mb-4">Need cover this week?</h2>
+            <p className="text-lg text-dark/70 leading-relaxed mb-8">
+              Send us the role brief and we will revert with vetted candidates within 48 hours.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import Hero from '../components/Hero.jsx';
+import { Link } from 'react-router-dom';
 import SectionTitle from '../components/SectionTitle.jsx';
 import FeatureCard from '../components/FeatureCard.jsx';
 import CTA from '../components/CTA.jsx';
@@ -8,13 +8,39 @@ import { eventSupport, partnershipCapabilities, venuesSupported, serviceScope } 
 export default function EmergencyServices() {
   return (
     <>
-      <Hero
-        variant="inner"
-        eyebrow="Event medical services"
-        title="Emergency medical cover for events and gatherings"
-        description="Paramedics, ambulances, and incident command for sporting events, festivals, conferences, and production sets."
-        primaryCta={{ to: '/contact', label: 'Plan your event' }}
-      />
+      {/* Split hero: text left, concert image right */}
+      <section className="bg-peach">
+        <div className="container-section py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Left: text */}
+          <div>
+            <p className="eyebrow mb-4">Event medical services</p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+              Emergency medical cover for events and gatherings
+            </h1>
+            <p className="text-lg text-dark/70 leading-relaxed mb-8 max-w-xl">
+              Paramedics, ambulances, and incident command for sporting events, festivals, conferences, and production sets.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-primary text-white font-semibold hover:opacity-90 transition-opacity"
+            >
+              Plan your event
+            </Link>
+          </div>
+
+          {/* Right: image */}
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-card">
+            <img
+              src="/concert-crowd-stage.jpg"
+              alt=""
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* How we support */}
       <section className="section-padding bg-white">
@@ -39,36 +65,77 @@ export default function EmergencyServices() {
         </div>
       </section>
 
+      {/* Full-width banner: safety officers on the ground */}
+      <section aria-hidden="true" className="w-full">
+        <div className="aspect-[21/9] w-full overflow-hidden">
+          <img
+            src="/medics-sporting.png"
+            alt=""
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
+      </section>
+
       {/* Partnership capabilities + Venues */}
       <section className="section-padding bg-peach">
         <div className="container-section grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-soft">
-            <p className="eyebrow mb-4">Partnership capabilities</p>
-            <h3 className="text-2xl mb-6">What we can take on</h3>
-            <ul className="space-y-3">
-              {partnershipCapabilities.map((c) => (
-                <li key={c} className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-primary" />
-                  </span>
-                  <span className="text-dark/80">{c}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Partnership capabilities */}
+          <div className="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <div className="aspect-[16/9] w-full overflow-hidden">
+              <img
+                src="/partnership-handshake.jpg"
+                alt=""
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="p-8 lg:p-10">
+              <p className="eyebrow mb-4">Partnership capabilities</p>
+              <h3 className="text-2xl mb-6">What we can take on</h3>
+              <ul className="space-y-3">
+                {partnershipCapabilities.map((c) => (
+                  <li key={c} className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-primary" />
+                    </span>
+                    <span className="text-dark/80">{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-soft">
-            <p className="eyebrow mb-4">Venues supported</p>
-            <h3 className="text-2xl mb-6">Where we work</h3>
-            <ul className="space-y-3">
-              {venuesSupported.map((v) => (
-                <li key={v} className="flex items-start gap-3">
-                  <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-primary" />
-                  </span>
-                  <span className="text-dark/80">{v}</span>
-                </li>
-              ))}
-            </ul>
+
+          {/* Venues supported */}
+          <div className="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <div className="aspect-[16/9] w-full overflow-hidden">
+              <img
+                src="/urban-venue-ambulance.jpg"
+                alt=""
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <div className="p-8 lg:p-10">
+              <p className="eyebrow mb-4">Venues supported</p>
+              <h3 className="text-2xl mb-6">Where we work</h3>
+              <ul className="space-y-3">
+                {venuesSupported.map((v) => (
+                  <li key={v} className="flex items-start gap-3">
+                    <span className="w-5 h-5 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 text-primary" />
+                    </span>
+                    <span className="text-dark/80">{v}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
